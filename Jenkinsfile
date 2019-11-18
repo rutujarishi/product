@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'sudo apt install -y mvn'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
