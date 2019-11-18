@@ -7,6 +7,6 @@ build:
     image: maven:latest
     script:
         - echo "hello world"
-        - mvn clean package test
+        - mvn clean compile package test
         - mkdir build
         - touch build/info.txt
