@@ -1,5 +1,89 @@
 version: '3'
 services:
+ mongo :
+  image : mongo:latest
+  ports:
+    - "27017:27017"
+  container_name : dockers-mongo
+  network_mode: host
+#  environment :
+#       MONGO_ROOT_PASSWORD : root
+#       MONGO_DATABASE : springboot-user
+#       MONGO_USER : root_app
+#       MONGO_PASSWORD : root123
+
+ mysql:
+  image: mysql:latest
+  ports:
+      - "3306:3306"
+  container_name: docker-mysql
+  network_mode: host
+  environment:
+      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: TrWpzffjre
+      MYSQL_USER: root_app
+      MYSQL_PASSWORD: root123
+
+ user-management:
+  image: user-management
+  build: user-management-service/
+  restart: always
+  network_mode: host
+  container_name: user-management
+  depends_on:
+    - mongo
+  ports:
+    - 8083:8083
+
+
+ auth:
+   image: auth-service
+   build: auth-service/
+   restart: always
+   network_mode: host
+   container_name: auth-service
+   depends_on:
+     - mysql
+   ports:
+     - 8084:8084
+
+
+ payment:
+   image: payment-service
+   build: payment-service/
+   restart: always
+   network_mode: host
+   container_name: payment-service
+   depends_on:
+     - mysql
+   ports:
+     - 8080:8080
+
+
+ booking:
+   image: booking-service
+   build: booking-service/
+   restart: always
+   network_mode: host
+   container_name: booking-service
+   depends_on:
+     - mysql
+   ports:
+     - 9090:9090
+
+
+ asset-management:
+   image: asset-management
+   build: asset-management-service/
+   restart: always
+   network_mode: host
+   container_name: management
+   depends_on:
+     - mongo
+   ports:
+     - 8085:8085
+
+
  zuul:
   image: zuul-service
   build: zuul-service/
@@ -8,8 +92,7 @@ services:
   container_name: zuul-service
   ports:
     - 8081:8081
-  expose:
-    - 8081
+
  
  eureka:
   image: eureka-service
@@ -19,8 +102,7 @@ services:
   container_name: eureka-service
   ports:
     - 8761:8761
-  expose:
-    - 8761
+
  config:
   image: config-service
   build: config-service/
@@ -29,6 +111,5 @@ services:
   container_name: config-service
   ports:
     - 8888:8888
-  expose:
-    - 8888
+
   

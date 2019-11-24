@@ -1,0 +1,80 @@
+<div class="sign-up">
+
+    <div class="container-fluid">
+      <div class="roe">
+        <div class="col-md-12">
+          <div id="intro2" class="fb-body">Update Your Profile</div>
+          <div id="img2" class="fb-body"></div>
+          <mat-card>
+            
+              <div id="form3" class="fb-body">
+                <p>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Firstname</mat-label>
+                    <input required [(ngModel)]="firstname" matInput placeholder="Placeholder">
+                    <mat-hint>Firstname</mat-hint>
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Lastname</mat-label>
+                    <input required [(ngModel)]="lastname" matInput placeholder="Placeholder">
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Aadhar No.</mat-label>
+                    <input [(ngModel)]="aadharNo" type="number" required matInput placeholder="Placeholder">
+                  </mat-form-field>
+                </p>
+                <div class="example-container">
+                  <mat-form-field>
+                    <input matInput placeholder="Enter your email" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <mat-form-field appearance="outline" class="example-full-width">
+                  <input [(ngModel)]="dob" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                         placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+                  <mat-radio-button class="example-radio-button" value="male">Male</mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="female">Female</mat-radio-button>
+                </mat-radio-group>
+  
+                <div class="form-group">
+                  <label>File Uploads</label>
+                  <input type="file" (change)="fileuploads($event)" required>
+                  <input type="file" (change)="fileupload($event)" required>
+                </div>
+                <div class="form-group">
+                  <button mat-raised-button color="primary" type="button" class="btn-btn-success" (click)="save()">
+                    UpForVerification
+                  </button>
+                </div>
+              </div>
+          </mat-card>
+        </div>
+      </div>
+      <!--  <div id="intro2" class="fb-body">Create an account</div> <div id="img2" class="fb-body"></div>-->
+      <!--  <div id="intro3" class="fb-body">It's free and always will be.</div>-->
+      <!--  <div id="form3" class="fb-body">-->
+      <!--    <input [(ngModel)]="FirstName" placeholder="First Name" type="text" id="namebox" name="name1" required/>-->
+      <!--    <input [(ngModel)]= "LastName" placeholder="Last Name" type="text" id="namebox" required /> <br>-->
+      <!--    <input [(ngModel)]= "Email"placeholder="Email" type="text" id="mailbox" required /><br>-->
+      <!--    <input [(ngModel)]=type="date" id="namebox" required /><b><br>-->
+      <!--    <input type="radio" id="r-b" name="sex" value="male" />Male-->
+      <!--    <input type="radio" id="r-b" name="sex" value="female" />Female<br><br>-->
+      <!--    <input type="submit" class="button2" value="Create an account" />-->
+      <!--</div>-->
+    </div>
+  </div>
+  
+  
+  

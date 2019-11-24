@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>BOOL</div>
+    <div>
+        <span>Home</span>
+        <span>About</span>
+    </div>
+</mat-toolbar>
+
+<mat-toolbar>
+    <div>USER LOGIN</div>
+</mat-toolbar>
+
+<mat-card class="my-card">
+     <mat-card-content>
+        <form class="my-form">
+           <mat-form-field class="full-width">
+                <mat-label>User ID</mat-label>
+                <input  matInput  placeholder="ID" name="userID">
+           </mat-form-field>
+           <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input  matInput  placeholder="Password" name="password">
+            </mat-form-field>
+        </form>
+     </mat-card-content>
+     <mat-card-actions>
+        <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
+     </mat-card-actions>
+</mat-card>
